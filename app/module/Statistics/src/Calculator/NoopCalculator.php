@@ -9,12 +9,20 @@ use Statistics\Dto\StatisticsTo;
 
 class NoopCalculator extends AbstractCalculator
 {
+    protected const UNITS = 'posts';
+
+    /**
+     * @var array
+     */
+    private $totalPostsPerUserPerMonth = [];
+
     /**
      * @inheritDoc
      */
     protected function doAccumulate(SocialPostTo $postTo): void
     {
-        // Noops!
+        $key = $postTo->getDate()->format('\M\o\n\t\h F, Y');
+        $this->totalPostsPerUserPerMonth[$key][$postTo->getAuthorId()] = ($this->totalPostsPerUserPerMonth[$key][$postTo->getAuthorId()] ?? 0) + 1;
     }
 
     /**
@@ -22,6 +30,17 @@ class NoopCalculator extends AbstractCalculator
      */
     protected function doCalculate(): StatisticsTo
     {
-        return new StatisticsTo();
+        $stats = new StatisticsTo();
+        foreach ($this->totalPostsPerUserPerMonth as $splitPeriod => $users) {
+            $child = (new StatisticsTo())
+                ->setName($this->parameters->getStatName())
+                ->setSplitPeriod($splitPeriod)
+                ->setValue(array_sum($users) / count($users))
+                ->setUnits(self::UNITS);
+
+            $stats->addChild($child);
+        }
+
+        return $stats;
     }
 }
