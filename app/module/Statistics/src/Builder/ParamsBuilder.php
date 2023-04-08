@@ -42,6 +42,10 @@ class ParamsBuilder
                 ->setStatName(StatsEnum::AVERAGE_POSTS_NUMBER_PER_USER_PER_MONTH)
                 ->setStartDate($startDate)
                 ->setEndDate($endDate),
+            (new ParamsTo())
+                ->setStatName(StatsEnum::AVERAGE_POSTS_NUMBER_PER_USER_PER_MONTH_WITH_USERNAME)
+                ->setStartDate($startDate)
+                ->setEndDate($endDate),
         ];
     }
 }
