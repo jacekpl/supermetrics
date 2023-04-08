@@ -22,6 +22,7 @@ class StatisticsController extends Controller
         StatsEnum::AVERAGE_POSTS_NUMBER_PER_USER_PER_MONTH => 'Average number of posts per user per month',
         StatsEnum::AVERAGE_POST_LENGTH                     => 'Average character length/post in a given date range',
         StatsEnum::MAX_POST_LENGTH                         => 'Longest post by character length in a given date range',
+        StatsEnum::AVERAGE_POSTS_NUMBER_PER_USER_PER_MONTH_WITH_USERNAME => 'Average number of posts per user per month with username',
     ];
 
     /**

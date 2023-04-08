@@ -8,6 +8,7 @@ use Statistics\Calculator\CalculatorComposite;
 use Statistics\Calculator\CalculatorInterface;
 use Statistics\Calculator\MaxPostLength;
 use Statistics\Calculator\NoopCalculator;
+use Statistics\Calculator\PostsPerUserPerMonthCalculator;
 use Statistics\Calculator\TotalPostsPerWeek;
 use Statistics\Dto\ParamsTo;
 use Statistics\Enum\StatsEnum;
@@ -25,6 +26,7 @@ class StatisticsCalculatorFactory
         StatsEnum::MAX_POST_LENGTH                         => MaxPostLength::class,
         StatsEnum::TOTAL_POSTS_PER_WEEK                    => TotalPostsPerWeek::class,
         StatsEnum::AVERAGE_POSTS_NUMBER_PER_USER_PER_MONTH => NoopCalculator::class,
+        StatsEnum::AVERAGE_POSTS_NUMBER_PER_USER_PER_MONTH_WITH_USERNAME => PostsPerUserPerMonthCalculator::class,
     ];
 
     /**

@@ -35,7 +35,7 @@ class NoopCalculator extends AbstractCalculator
             $child = (new StatisticsTo())
                 ->setName($this->parameters->getStatName())
                 ->setSplitPeriod($splitPeriod)
-                ->setValue(array_sum($users) / count($users))
+                ->setValue(round(array_sum($users) / count($users), 2))
                 ->setUnits(self::UNITS);
 
             $stats->addChild($child);
